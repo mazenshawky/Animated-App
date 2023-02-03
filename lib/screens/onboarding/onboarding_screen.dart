@@ -5,6 +5,8 @@ import 'package:animated_app/core/utils/media_query_values.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
+import '../components/animated_button.dart';
+
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
 
@@ -13,6 +15,14 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
+  late RiveAnimationController _buttonAnimationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _buttonAnimationController = OneShotAnimation("active", autoplay: false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +44,45 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
               child: const SizedBox(),
+            ),
+          ),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Spacer(),
+                  SizedBox(
+                    width: 260,
+                    child: Column(
+                      children: const [
+                        Text(
+                          'Learn desgin & code',
+                          style: TextStyle(
+                            fontSize: 60,
+                            fontFamily: 'Poppins',
+                            height: 1.2,
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                            "Don't skip design. Learn design and code, by building real apps with Flutter and Swift. Complete courses about the best tools."),
+                      ],
+                    ),
+                  ),
+                  const Spacer(flex: 2),
+                  AnimatedButton(
+                    buttonAnimationController: _buttonAnimationController,
+                    press: () => _buttonAnimationController.isActive = true,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 24),
+                    child: Text(
+                        "Purchase includes access to 30+ courses, 240+ premium tutorials, 120+ hours of videos, source files and certificates."),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
