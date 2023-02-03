@@ -1,4 +1,4 @@
-import 'package:animated_app/resources/app_themes.dart';
+import 'package:animated_app/core/utils/app_themes.dart';
 import 'package:animated_app/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Animated App',
       theme: getApplicationTheme(),
       home: const OnBoardingScreen(),
