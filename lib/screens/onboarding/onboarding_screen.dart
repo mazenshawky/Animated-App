@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 import '../components/animated_button.dart';
+import '../components/custom_sign_in_dialog.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -16,6 +17,7 @@ class OnBoardingScreen extends StatefulWidget {
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   late RiveAnimationController _buttonAnimationController;
+  bool isSignInDialogShown = false;
 
   @override
   void initState() {
@@ -46,42 +48,61 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: const SizedBox(),
             ),
           ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Spacer(),
-                  SizedBox(
-                    width: 260,
-                    child: Column(
-                      children: const [
-                        Text(
-                          'Learn desgin & code',
-                          style: TextStyle(
-                            fontSize: 60,
-                            fontFamily: 'Poppins',
-                            height: 1.2,
+          AnimatedPositioned(
+            top: isSignInDialogShown ? -50 : 0,
+            duration: const Duration(milliseconds: 240),
+            height: context.height,
+            width: context.width,
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Spacer(),
+                    SizedBox(
+                      width: 260,
+                      child: Column(
+                        children: const [
+                          Text(
+                            'Learn desgin & code',
+                            style: TextStyle(
+                              fontSize: 60,
+                              fontFamily: 'Poppins',
+                              height: 1.2,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                            "Don't skip design. Learn design and code, by building real apps with Flutter and Swift. Complete courses about the best tools."),
-                      ],
+                          SizedBox(height: 16),
+                          Text(
+                              "Don't skip design. Learn design and code, by building real apps with Flutter and Swift. Complete courses about the best tools."),
+                        ],
+                      ),
                     ),
-                  ),
-                  const Spacer(flex: 2),
-                  AnimatedButton(
-                    buttonAnimationController: _buttonAnimationController,
-                    press: () => _buttonAnimationController.isActive = true,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 24),
-                    child: Text(
-                        "Purchase includes access to 30+ courses, 240+ premium tutorials, 120+ hours of videos, source files and certificates."),
-                  ),
-                ],
+                    const Spacer(flex: 2),
+                    AnimatedButton(
+                      buttonAnimationController: _buttonAnimationController,
+                      press: () {
+                        _buttonAnimationController.isActive = true;
+                        Future.delayed(const Duration(milliseconds: 800), () {
+                          setState(() {
+                            isSignInDialogShown = true;
+                          });
+                          customSignInDialog(
+                            context,
+                            onClosed: (_) => setState(() {
+                              isSignInDialogShown = false;
+                            }),
+                          );
+                        });
+                      },
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 24),
+                      child: Text(
+                          "Purchase includes access to 30+ courses, 240+ premium tutorials, 120+ hours of videos, source files and certificates."),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

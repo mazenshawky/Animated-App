@@ -1,4 +1,4 @@
-import 'package:animated_app/core/utils/app_themes.dart';
+import 'package:animated_app/config/app_themes.dart';
 import 'package:animated_app/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
