@@ -5,6 +5,8 @@ const String iconPath = 'assets/icons';
 class RiveAssets {
   static const String shapes = '$rivePath/shapes.riv';
   static const String button = '$rivePath/button.riv';
+  static const String check = '$rivePath/check.riv';
+  static const String confetti = '$rivePath/confetti.riv';
 }
 
 class BackgroundAssets {
