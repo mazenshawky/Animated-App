@@ -1,8 +1,10 @@
+import 'package:animated_app/screens/entry_point.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rive/rive.dart';
 
 import '../../core/utils/app_assets.dart';
+import '../../core/utils/rive_utils.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -23,13 +25,6 @@ class _SignInFormState extends State<SignInForm> {
 
   late SMITrigger confetti;
 
-  StateMachineController getRiveController(Artboard artboard) {
-    StateMachineController? controller =
-        StateMachineController.fromArtboard(artboard, 'State Machine 1');
-    artboard.addController(controller!);
-    return controller;
-  }
-
   void signIn() {
     setState(() {
       isShowLoading = true;
@@ -43,6 +38,10 @@ class _SignInFormState extends State<SignInForm> {
             isShowLoading = false;
           });
           confetti.fire();
+          Future.delayed(const Duration(seconds: 1), () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const EntryPoint()));
+          });
         });
       } else {
         error.fire();
@@ -131,7 +130,7 @@ class _SignInFormState extends State<SignInForm> {
                   RiveAssets.check,
                   onInit: (artboard) {
                     StateMachineController controller =
-                        getRiveController(artboard);
+                        RiveUtils.getRiveController(artboard);
                     check = controller.findSMI('Check') as SMITrigger;
                     error = controller.findSMI('Error') as SMITrigger;
                     reset = controller.findSMI('Reset') as SMITrigger;
@@ -147,7 +146,7 @@ class _SignInFormState extends State<SignInForm> {
                     RiveAssets.confetti,
                     onInit: (artboard) {
                       StateMachineController controller =
-                          getRiveController(artboard);
+                          RiveUtils.getRiveController(artboard);
                       confetti =
                           controller.findSMI('Trigger explosion') as SMITrigger;
                     },
