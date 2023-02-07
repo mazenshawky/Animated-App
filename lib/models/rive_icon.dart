@@ -51,3 +51,45 @@ List<RiveIcon> bottomNavs = [
     title: 'Profile',
   ),
 ];
+
+List<RiveIcon> sideMenus = [
+  RiveIcon(
+    src: RiveAssets.icons,
+    artboard: 'HOME',
+    stateMachineName: 'HOME_interactivity',
+    title: 'Home',
+  ),
+  RiveIcon(
+    src: RiveAssets.icons,
+    artboard: 'SEARCH',
+    stateMachineName: 'SEARCH_Interactivity',
+    title: 'Search',
+  ),
+  RiveIcon(
+    src: RiveAssets.icons,
+    artboard: 'LIKE/STAR',
+    stateMachineName: 'STAR_Interactivity',
+    title: 'Favorites',
+  ),
+  RiveIcon(
+    src: RiveAssets.icons,
+    artboard: 'CHAT',
+    stateMachineName: 'CHAT_Interactivity',
+    title: 'Help',
+  ),
+];
+
+List<RiveIcon> sideMenus2 = [
+  RiveIcon(
+    src: RiveAssets.icons,
+    artboard: 'TIMER',
+    stateMachineName: 'TIMER_Interactivity',
+    title: 'History',
+  ),
+  RiveIcon(
+    src: RiveAssets.icons,
+    artboard: 'BELL',
+    stateMachineName: 'BELL_Interactivity',
+    title: 'Notifications',
+  ),
+];

@@ -8,6 +8,7 @@ class RiveAssets {
   static const String check = '$rivePath/check.riv';
   static const String confetti = '$rivePath/confetti.riv';
   static const String icons = '$rivePath/icons.riv';
+  static const String menuButton = '$rivePath/menu_button.riv';
 }
 
 class BackgroundAssets {

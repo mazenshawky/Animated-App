@@ -1,10 +1,10 @@
-import 'package:animated_app/screens/entry_point.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rive/rive.dart';
 
 import '../../core/utils/app_assets.dart';
 import '../../core/utils/rive_utils.dart';
+import '../home/home_screen.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -40,7 +40,7 @@ class _SignInFormState extends State<SignInForm> {
           confetti.fire();
           Future.delayed(const Duration(seconds: 1), () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const EntryPoint()));
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
           });
         });
       } else {
